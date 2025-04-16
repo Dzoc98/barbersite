@@ -1,0 +1,38 @@
+Obiettivo: Crea un sito web moderno ed elegante per la gestione delle prenotazioni di un barbiere, con autenticazione Firebase e funzioni utente/admin. Il progetto dovrà essere facilmente adattabile a un'app mobile tramite webview.
+
+- Deve usare FireBase come database (per ora configura tutto poi inserisco io con i riferimenti del db)
+- deve essere un sito web pensato alla gestione delle prenotazioni di un barbershop, quindi tagli di capelli e barba
+
+deve essere strutturato cosi:
+
+Sistema di login con Sezione login e registrati:
+- il sito avrà due modalità di accesso, una per Admin (che sarà piu nascosta) e una per gli utenti
+
+SEZIONE UTENTI
+- gli utenti si dovranno necessariamente registrare per prenotare, quando si registrano dovranno essere forniti i campi come: 
+nome, cognome, numero di telefono, username (controllo se non esiste già), password - tutti campi obbligatori
+- quando fanno il login si fa tramite username e password
+- una volta registrato e accede al sito sarà visibile all'utente una schermata dove gli sarà possibile prenotare un posto. Ci sarà una sezione utente cliccando in alto a destra, dove ci saranno alcune opzioni: potrà modificare le informazioni di contatto, cambiare password o username, vedere le sue prenotazioni, eliminare l'account
+- nella schermata principale vedrà un pulsante con scritto Prenota (o qualcosa di simile piu adatto). se cliccato dovrà essere visibile un calendario con vari filtri come sul mese ecc. cliccando un giorno del calendario dovranno apparire gli slot liberi e sarà possibile selezionare un orario (una volta selezionato l'orario si dovrà aggiornare in tempo reale gli slot disponibili). 
+-quando si seleziona l'orario si deve confermare, e una volta confermato deve arrivare una notifica whatsapp 24h ore prima alla prenotazione (configura tutto per l'invio notifiche poi inserirò io i riferimenti che occorrono).
+- quando si seleziona un orario, deve essere selezionabile un menu con il tipo di richiesta che il cliente deve fare, il menu è questo:
+
+Barba (20 minuti)
+taglio+shampoo (30 minuti)
+trattamento barba (30 minuti)
+trattamento anticaduta (30 minuti)
+taglio + shampo + barba (40 minuti)
+taglio+shampo+trattamento barba (45 minuti)
+
+se puoi implementa un sistema che si puo prenotare in base alla richiesta del cliente ogni 10 minuti (esempio, 09:10, 09:20, 09:30 ecc), non si puo prenotare con un orario voluto dal cliente (es. 09:12, 09:37 ecc) e le prenotazione partono dalle 09:00 alle 19:30. Bisognerebbe anche implementare però una logica che prevede di calcolare il tempo rimanente tra un taglio e l'altro in modo da ottimizzare le prenotazioni e non richiare di avere buchi. Esempio: se prenoto un taglio alle 09:00 di 30 minuti (quindi fino alle 09:30), non posso prenotare un nuovo appuntamento alle 09:40 in quanto mi rimarreberro fuori 10 minuti). altro esempio: se prenoto un appuntamento alle 09:00 di 30 minuti, e uno vuole prenotare un posto per i capelli, puo farlo a partire dalle 09:50. e chi vuole prenotare la barba, il sistema deve riconoscere in automatico che un posto libero è dalle 09:30 alle 09:50 (20 minuti) e cosi con tutte le altre prenotazioni.. deve capire quando si puo prenotare in base agli orari dei tagli in modo da ottimizzare le prenotazioni e cercare di avere meno buchi possibili.
+
+- deve esserci anche un tab chiamato prenotazioni
+
+SEZIONE ADMIN
+questa è la sezione riservata al gestore. Qui sarà visibile una dashboard con tutte le prenotazioni divise per giorno, magari metti un calendario o comunque delle grafiche belle e adatte per gestire le prenotazioni. se metti un calendario possibilità di cliccare sul giorno e vedere le prenotazioni, possobilità di cliccare il cliente e vedere le info del cliente come username, nome, cognome
+
+Possibilità di avere una sezione con il riepilogo dei clienti registrati e visualizzare alcuni campi che vedrà e potrà personalizzare solo lui, come Caffè (campo di testo ) dove potrà selezionare il tipo di caffe che prende il cliente, un campo chiamato ultimo taglio fatto o qualcosa di simile dove sarà visibile l'ultimo taglio fatto dal cliente (lo puoi prendere dalla prenotazione fatta), numero di prenotazioni. 
+
+Quando viene finita una prenotazione fatta, dalla sua dashbord delle prenotazioni deve poter cliccare la prenotazione e potere fare delle azioni come per esempio elimina, o completata. Se clicca completata deve partire un'altra notifica su whatsapp immediata sul ringraziare il cliente. se clicca elimina (deve chiedere conferma se eliminiare nel caso si clicca per sbaglio), si deve aggiornare gli orari di prenotazione nell'area clienti ovviamente. 
+
+fallo in modo che sia perfettamente adattabile per una successiva creazione di un app con una webview
